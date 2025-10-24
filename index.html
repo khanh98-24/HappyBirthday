@@ -3,7 +3,9 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
     <title>Chúc mừng sinh nhật Chi yêu HeHe 💖</title>
@@ -44,6 +46,7 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
             /* Safari iOS fix */
             -webkit-tap-highlight-color: transparent;
             overflow-x: hidden;
@@ -994,6 +997,14 @@
                 setTimeout(() => msg.remove(), 500);
             }, 2500);
         }
+
+        playBtn.addEventListener("click", () => {
+            startAll();
+        });
+
+        stopBtn.addEventListener("click", () => {
+            stopAll();
+        });
     </script>
 </body>
 
