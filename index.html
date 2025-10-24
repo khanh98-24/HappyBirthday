@@ -43,6 +43,9 @@
             color: var(--muted);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            -webkit-text-size-adjust: 100%;
+            /* Safari iOS fix */
+            -webkit-tap-highlight-color: transparent;
             overflow-x: hidden;
         }
         /* Background subtle bokeh using pseudo elements */
@@ -62,6 +65,7 @@
             -webkit-backdrop-filter: blur(6px);
             backdrop-filter: blur(6px);
             overflow: hidden;
+            -webkit-overflow-scrolling: touch;
         }
         /* Main card (paper-like) */
         
@@ -77,7 +81,14 @@
             gap: 28px;
             align-items: center;
             transform: translateY(20px);
+            -webkit-transform: translateY(20px);
             animation: slideUp 700ms cubic-bezier(0.22, 0.9, 0.3, 1) forwards;
+            -webkit-animation: slideUp 700ms cubic-bezier(0.22, 0.9, 0.3, 1) forwards;
+            will-change: transform, opacity;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            min-height: 0;
+            /* avoid flexbox overflow issues in Safari */
         }
         /* Responsive stacking */
         
@@ -201,6 +212,15 @@
             margin-top: 8px;
             flex-wrap: wrap;
         }
+        /* gap fallback for older Safari that don't support gap on flex */
+        
+        .controls>* {
+            margin-right: 12px;
+        }
+        
+        .controls>*:last-child {
+            margin-right: 0;
+        }
         
         .btn {
             background: linear-gradient(180deg, var(--accent), #ff5b8c);
@@ -241,9 +261,12 @@
             pointer-events: none;
             z-index: 1200;
             animation: floatUp linear forwards;
+            -webkit-animation: floatUp linear forwards;
             opacity: 0.95;
             transform: translateY(0) scale(1);
+            -webkit-transform: translateY(0) scale(1);
             filter: drop-shadow(0 6px 14px rgba(200, 70, 110, 0.12));
+            will-change: transform, opacity;
         }
         
         @keyframes floatUp {
@@ -266,7 +289,9 @@
             pointer-events: none;
             transform-origin: center;
             animation: fall linear forwards;
+            -webkit-animation: fall linear forwards;
             opacity: 0.95;
+            will-change: transform, opacity;
         }
         
         @keyframes fall {
@@ -295,6 +320,8 @@
             opacity: 0.98;
             transform-origin: center;
             animation: confettiFall linear forwards;
+            -webkit-animation: confettiFall linear forwards;
+            will-change: transform, opacity;
         }
         
         @keyframes confettiFall {
